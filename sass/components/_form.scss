@@ -1,0 +1,108 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 1rem;
+
+    @include respond(tab-port) {
+      margin-bottom: .2rem;
+    }
+  }
+
+  &__input {
+    font-size: $default-font-size;
+    font-weight: 300;
+    color: $color-grey-dark;
+    background-color: $color-white;
+    padding: 1.5rem 2rem;
+    display: block;
+    outline: none;
+    border: none;
+    width: 85%;
+    border-bottom: 3px solid transparent;
+    transition: all .3s;
+
+
+
+    &:focus {
+      border-bottom: 3px solid $color-primary;
+      box-shadow: 0 .5rem 2rem rgba($color-black, .2);
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid orangered;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $color-grey-dark;
+    display: block;
+    padding: 1rem 2rem;
+    transition: all .4s;
+  }
+
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5rem);
+  }
+
+  &__radio-group {
+    display: inline-block;
+    position: relative;
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-button {
+    position: absolute;
+    left: 0;
+    top: -.2rem;
+    height: 3rem;
+    width: 3rem;
+    display: inline-block;
+    border-radius: 50%;
+    border: 5px solid $color-primary;
+
+    @include respond(tab-port) {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1.5rem;
+      width: 1.5rem;
+      border-radius: 50%;
+      background-color: $color-primary;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity .2s;
+
+      @include respond(tab-port) {
+
+      }
+    }
+  }
+
+  &__radio-input:checked + &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    font-weight: 400;
+    cursor: pointer;
+    margin-left: 4rem;
+  }
+}
